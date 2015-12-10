@@ -5,3 +5,4 @@ Questions for Core Java:
 3. Implement an enum to function as a singleton class, which provides a single instance. 
 4. Learn the states for Java Thread instance
 5. Learn about ClassLoader
+6. Nice concept to rememeber http://stackoverflow.com/questions/3578604/how-to-solve-the-double-checked-locking-is-broken-declaration-in-java

@@ -1,0 +1,37 @@
+package com.nikhil.java.samples;
+
+import java.math.BigDecimal;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+
+public class TestLambdaClass {
+
+	public static void main(String... args) {
+		BigDecimal actual = new BigDecimal("110");
+		BigDecimal expected = new BigDecimal("100");
+		String actualString = "message";
+		String expectedString = "message";
+		System.out.println(compareValues(actual, currency -> currency != null
+				&& ((BigDecimal) currency).compareTo(expected) == 0));
+		System.out
+				.println(compareValues(actualString, message -> message != null
+						&& ((String) message).equalsIgnoreCase(expectedString)));
+		compareValues(
+				actual,
+				currency -> currency != null
+						&& ((BigDecimal) currency).compareTo(expected) == 0,
+				currency -> System.out.println("actual doesn't match: "
+						+ currency + " expected: " + expected));
+	}
+
+	private static boolean compareValues(Object actual, Predicate<Object> testor) {
+		return testor.test(actual);
+	}
+
+	private static void compareValues(Object actual,
+			Predicate<Object> testCondition, Consumer<Object> logInfo) {
+		if (!testCondition.test(actual)) {
+			logInfo.accept(actual);
+		}
+	}
+}

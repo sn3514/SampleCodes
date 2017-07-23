@@ -1,0 +1,38 @@
+package com.nikhil.samples.aws;
+
+import java.io.File;
+
+public class DeleteFiles {
+
+	public static void main(String...args) {
+		
+		String deleteFolderPath = new String("C:\\Users\\nredd3\\SourceCode");
+		File deleteFolder = new File(deleteFolderPath);
+		System.out.println("Start");
+		if (deleteFolder != null && deleteFolder.isDirectory()) {
+			deleteFolder(deleteFolder);
+		}
+		System.out.println("Stop");
+
+	}
+	
+	private static void deleteFolder(File folder) {
+		if(folder != null && folder.isDirectory()) {
+			File[] files = folder.listFiles();
+			for (File file: files) {
+				System.out.println(file.getName());
+				if (file.isFile()) {
+					file.delete();
+				} else {
+					deleteFolder(file.getAbsoluteFile());
+				}
+			}
+			folder.delete();
+		} else if (folder != null && folder.isFile()){
+			folder.delete();			
+		} else {
+			System.out.println("empty folder or folder doesn't exist");
+		}
+	}
+
+}
